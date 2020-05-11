@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="gd.rjb.lkm.modules.manager.dao.SuppliersDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="gd.rjb.lkm.modules.manager.entity.SuppliersEntity" id="suppliersMap">
+        <result property="suppliersid" column="suppliersID"/>
+        <result property="contactperson" column="contactPerson"/>
+        <result property="telephone" column="telephone"/>
+        <result property="contactadress" column="contactAdress"/>
+    </resultMap>
+    <insert id="insertSuppliers" parameterType="gd.rjb.lkm.modules.manager.entity.SuppliersEntity">
+        INSERT INTO suppliers VALUES (#{suppliersId},#{contactPerson},#{telephone},#{contactAddress})
+    </insert>
+
+
+</mapper>

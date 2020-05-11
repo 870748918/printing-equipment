@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="gd.rjb.lkm.modules.salesman.dao.AddDao">
+
+	<!--&lt;!&ndash; 可根据自己的需求，是否要使用 &ndash;&gt;-->
+    <!--<resultMap type="gd.rjb.lkm.modules.salesman.entity.AddEntity" id="addMap">-->
+        <!--<result property="addid" column="addID"/>-->
+        <!--<result property="goodsid" column="goodsID"/>-->
+        <!--<result property="addnum" column="addNum"/>-->
+        <!--<result property="addperson" column="addPerson"/>-->
+        <!--<result property="date" column="date"/>-->
+    <!--</resultMap>-->
+
+    <insert id="insertAdd" parameterType="gd.rjb.lkm.modules.salesman.entity.AddEntity">
+        insert into goods_add VALUES (#{addId},#{goodsId},#{addNum},#{addPerson},#{date})
+    </insert>
+    <select id="queryGoods" parameterType="String" resultType="String">
+        SELECT goods_name from goods WHERE goods_id = #{goodsId}
+    </select>
+</mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="gd.rjb.lkm.modules.salesman.dao.CountDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="gd.rjb.lkm.modules.salesman.entity.CountEntity" id="countMap">
+        <result property="countid" column="countID"/>
+        <result property="goodsid" column="goodsID"/>
+        <result property="countnum" column="countNum"/>
+        <result property="countperson" column="countPerson"/>
+        <result property="date" column="date"/>
+    </resultMap>
+    <insert id="insertCount" parameterType="gd.rjb.lkm.modules.salesman.entity.CountEntity">
+        insert into count VALUES (#{countId},#{goodsId},#{countNum},#{countPerson},#{status},#{date})
+    </insert>
+    <select id="queryGoods" parameterType="String" resultType="String">
+        SELECT goods_name from goods WHERE goods_id = #{goodsId}
+    </select>
+
+</mapper>

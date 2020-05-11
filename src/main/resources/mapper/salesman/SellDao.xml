@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="gd.rjb.lkm.modules.salesman.dao.SellDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="gd.rjb.lkm.modules.salesman.entity.SellEntity" id="sellMap">
+        <result property="sellId" column="sell_id"/>
+        <result property="goods" column="goods"/>
+        <result property="goodsNum" column="goods_num"/>
+        <result property="buyer" column="buyer"/>
+        <result property="telephone" column="telephone"/>
+        <result property="gestores" column="gestores"/>
+        <result property="date" column="date"/>
+        <result property="address" column="address"/>
+    </resultMap>
+    <insert id="insertSell" parameterType="gd.rjb.lkm.modules.salesman.entity.SellEntity">
+        insert into sell VALUES (#{sellId},#{goods},#{goodsNum},#{buyer},#{telephone},#{isVip},#{total},#{gestores},#{date},#{address})
+    </insert>
+    <select id="queryGoods" parameterType="String" resultType="String">
+        SELECT goods_name from goods WHERE goods_id = #{goodsId}
+    </select>
+    <select id="totalByAddress" resultType="gd.rjb.lkm.modules.manager.entity.AccountEntity" parameterType="String">
+        select address as place,sum(total) as total from `sell` where Address = #{address} GROUP BY address;
+    </select>
+    <select id="allTotal" resultType="gd.rjb.lkm.modules.manager.entity.AccountEntity">
+        select sum(total) as total from `sell` where GROUP BY address;
+    </select>
+    <select id="totoalByGestores" resultType="gd.rjb.lkm.modules.salesman.entity.SellTotal">
+        select gestores,sum(total) as total from sell group by gestores
+    </select>
+    <select id="totalByGoods" resultType="gd.rjb.lkm.modules.salesman.entity.SellGoodsTotal">
+        SELECT goods as `name`,sum(goods_num) as `value` FROM sell group by goods
+    </select>
+    <select id="totalByAddressToo" resultType="gd.rjb.lkm.modules.salesman.entity.SellGoodsTotal">
+        SELECT address as `name`,sum(goods_num) as `value` FROM sell group by address
+    </select>
+</mapper>
